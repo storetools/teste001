@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VitaLogis | Projeto Conceitual de Armazém</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+
+body{
+    background: linear-gradient(135deg,#eaf2f8,#ffffff);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar{
+    background: #1f3a5f;
+}
+
+.navbar-brand{
+    font-weight: bold;
+    color: #fff !important;
+}
+
+.hero{
+    padding:60px 0;
+}
+
+.logo{
+    max-width:160px;
+}
+
+.section-title{
+    font-weight:700;
+    color:#1f3a5f;
+    margin-bottom:25px;
+}
+
+.card-custom{
+    border:none;
+    border-radius:15px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.card-custom:hover{
+    transform:translateY(-5px);
+}
+
+.highlight-flow{
+    border-left:5px solid #198754;
+}
+
+.highlight-push{
+    border-left:5px solid #dc3545;
+}
+
+footer{
+    background:#1f3a5f;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+.badge-custom{
+    font-size:0.9rem;
+    padding:8px 12px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg">
+<div class="container">
+<a class="navbar-brand" href="#">
+<img src="/mnt/data/IMG_20260223_201353.jpg" class="logo me-2">
+VitaLogis
+</a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero text-center">
+<div class="container">
+<h1 class="section-title">Projeto Conceitual de Armazém</h1>
+<p class="lead">Armazenagem Inteligente com Flow Rack (FIFO) e Push Back (LIFO)</p>
+</div>
+</section>
+
+<!-- LAYOUT GERAL -->
+<section class="container mb-5">
+<h2 class="section-title"><i class="bi bi-building"></i> Estrutura Física do Armazém</h2>
+
+<div class="row g-4">
+
+<div class="col-md-4">
+<div class="card card-custom p-4">
+<h5><i class="bi bi-truck"></i> Recebimento</h5>
+<ul>
+<li>3 docas de entrada</li>
+<li>Conferência física e fiscal</li>
+<li>Endereçamento via WMS</li>
+</ul>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card card-custom p-4">
+<h5><i class="bi bi-box-arrow-right"></i> Expedição</h5>
+<ul>
+<li>2 docas de saída</li>
+<li>Área blocada para staging</li>
+<li>Separação por rota</li>
+</ul>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card card-custom p-4">
+<h5><i class="bi bi-shield-lock"></i> Almoxarifado</h5>
+<ul>
+<li>EPIs</li>
+<li>Ferramentas</li>
+<li>Etiquetas e suprimentos</li>
+</ul>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- FLOW RACK -->
+<section class="container mb-5">
+<h2 class="section-title text-success"><i class="bi bi-arrow-left-right"></i> Flow Rack – Método FIFO</h2>
+
+<div class="card card-custom highlight-flow p-4">
+<div class="row">
+<div class="col-md-8">
+
+<p><strong>Aplicação:</strong> Fármacos e bebidas com validade controlada.</p>
+
+<ul>
+<li>Entrada por trás da estrutura</li>
+<li>Saída frontal automática por gravidade</li>
+<li>Controle rígido de lote e validade</li>
+<li>Alta rotatividade</li>
+<li>Redução de perdas por vencimento</li>
+</ul>
+
+<span class="badge bg-success badge-custom">FIFO – First In, First Out</span>
+
+<hr>
+
+<h6>Importância para Fármacos:</h6>
+<p>Garantia sanitária, rastreabilidade por lote, conformidade com ANVISA.</p>
+
+<h6>Importância para Bebidas:</h6>
+<p>Controle de validade e rotação contínua.</p>
+
+</div>
+
+<div class="col-md-4 text-center">
+<i class="bi bi-arrow-repeat text-success" style="font-size:80px;"></i>
+<p class="mt-3">Movimentação automática por gravidade</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PUSH BACK -->
+<section class="container mb-5">
+<h2 class="section-title text-danger"><i class="bi bi-stack"></i> Push Back Rack – Método LIFO</h2>
+
+<div class="card card-custom highlight-push p-4">
+<div class="row">
+<div class="col-md-8">
+
+<p><strong>Aplicação:</strong> Bebidas de grande volume e SKUs consolidados.</p>
+
+<ul>
+<li>Carregamento frontal</li>
+<li>Paletes deslizam sobre trilhos inclinados</li>
+<li>Alta densidade de armazenagem</li>
+<li>Redução de corredores</li>
+<li>Ideal para grandes lotes</li>
+</ul>
+
+<span class="badge bg-danger badge-custom">LIFO – Last In, First Out</span>
+
+<hr>
+
+<h6>Importância Estratégica:</h6>
+<p>Maximiza cubagem do armazém e reduz custo por m² armazenado.</p>
+
+</div>
+
+<div class="col-md-4 text-center">
+<i class="bi bi-box-seam text-danger" style="font-size:80px;"></i>
+<p class="mt-3">Alta densidade de estocagem</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- WMS -->
+<section class="container mb-5">
+<h2 class="section-title"><i class="bi bi-pc-display"></i> Sistema WMS</h2>
+
+<div class="card card-custom p-4">
+<ul>
+<li>Controle de picking</li>
+<li>Rastreabilidade por lote</li>
+<li>Inventário rotativo</li>
+<li>Controle de validade</li>
+<li>Endereçamento automático</li>
+<li>Relatórios gerenciais</li>
+</ul>
+</div>
+</section>
+
+<!-- COMPARAÇÃO -->
+<section class="container mb-5">
+<h2 class="section-title"><i class="bi bi-diagram-3"></i> Comparativo Técnico</h2>
+
+<table class="table table-bordered text-center">
+<thead class="table-dark">
+<tr>
+<th>Critério</th>
+<th>Flow Rack (FIFO)</th>
+<th>Push Back (LIFO)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Controle de validade</td>
+<td class="text-success">Excelente</td>
+<td class="text-warning">Moderado</td>
+</tr>
+<tr>
+<td>Densidade</td>
+<td>Média</td>
+<td class="text-danger">Alta</td>
+</tr>
+<tr>
+<td>Aplicação ideal</td>
+<td>Fármacos</td>
+<td>Bebidas</td>
+</tr>
+<tr>
+<td>Rotatividade</td>
+<td>Alta</td>
+<td>Média/Alta</td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<footer>
+VitaLogis © 2026 | Projeto Conceitual de Armazenagem
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
