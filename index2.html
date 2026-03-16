@@ -1,0 +1,468 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VITALOGIS | Logística Inteligente</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<style>
+
+body{
+background:#f4f6fa;
+font-family:Segoe UI;
+}
+
+.navbar{
+background:#0b3b5c;
+}
+
+.hero{
+padding:70px;
+color:white;
+background:linear-gradient(135deg,#0b3b5c,#1b5a7a);
+text-align:center;
+}
+
+.card{
+border:none;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.section{
+padding:60px 0;
+}
+
+.icon{
+font-size:40px;
+color:#0b3b5c;
+}
+
+.qr-box{
+background:white;
+padding:20px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+display:inline-block;
+}
+
+.dashboard-card{
+background:white;
+padding:25px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+footer{
+background:#0b3b5c;
+color:white;
+padding:30px;
+margin-top:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+
+<div class="container">
+
+<a class="navbar-brand fw-bold" href="#">
+<i class="bi bi-box-seam"></i> VITALOGIS
+</a>
+
+</div>
+
+</nav>
+
+<section class="hero">
+
+<h1 class="display-4">VITALOGIS</h1>
+<p>Armazenagem inteligente de bebidas e fármacos</p>
+
+</section>
+
+<section class="section container">
+
+<h2 class="mb-4">Natureza da Empresa</h2>
+
+<p>
+A VITALOGIS é uma empresa especializada em armazenagem logística de bebidas e fármacos comuns utilizando sistemas modernos de armazenagem dinâmica para garantir rastreabilidade, segurança e eficiência operacional.
+</p>
+
+</section>
+
+<section class="section container">
+
+<h2 class="mb-4">Missão • Visão • Valores</h2>
+
+<div class="row">
+
+<div class="col-md-4">
+
+<div class="card p-4">
+
+<i class="bi bi-flag icon"></i>
+
+<h4>Missão</h4>
+
+<p>
+Oferecer soluções logísticas eficientes garantindo segurança e tecnologia no armazenamento de bebidas e fármacos.
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-4">
+
+<i class="bi bi-eye icon"></i>
+
+<h4>Visão</h4>
+
+<p>
+Ser referência em armazenagem inteligente na América Latina.
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card p-4">
+
+<i class="bi bi-heart icon"></i>
+
+<h4>Valores</h4>
+
+<p>
+Segurança, rastreabilidade, inovação, eficiência e responsabilidade.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section container">
+
+<h2 class="mb-4">Sistemas de Armazenagem</h2>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="card p-4">
+
+<h4>PUSH BACK</h4>
+
+<p>
+Sistema LIFO onde o último pallet inserido é o primeiro a sair.
+Ideal para bebidas devido ao grande volume por SKU.
+</p>
+
+<ul>
+
+<li>Alta densidade</li>
+<li>Redução de corredores</li>
+<li>2 a 4 pallets por nível</li>
+<li>Ideal para bebidas</li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="card p-4">
+
+<h4>FLOW RACK</h4>
+
+<p>
+Sistema FIFO com roletes por gravidade garantindo controle de validade.
+</p>
+
+<ul>
+
+<li>Primeiro que entra primeiro que sai</li>
+<li>Controle de validade</li>
+<li>Alta organização</li>
+<li>Ideal para fármacos</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section container">
+
+<h2 class="mb-4">Adequação de Produtos</h2>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="card p-4">
+
+<h4>Bebidas</h4>
+
+<p>
+Sistema recomendado: <b>PUSH BACK</b>
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="card p-4">
+
+<h4>Fármacos</h4>
+
+<p>
+Sistema recomendado: <b>FLOW RACK</b>
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section container text-center">
+
+<h2 class="mb-4">Gerador de QR Code</h2>
+
+<div class="qr-box">
+
+<canvas id="qr"></canvas>
+
+</div>
+
+<br><br>
+
+<button class="btn btn-primary" onclick="gerarQR()">Gerar QR Code</button>
+
+</section>
+
+<section class="section container text-center">
+
+<h2 class="mb-4">Scanner de QR Code</h2>
+
+<div id="reader" style="width:300px;margin:auto;"></div>
+
+</section>
+
+<section class="section container">
+
+<h2 class="mb-4">Dashboard Logístico</h2>
+
+<div class="row">
+
+<div class="col-md-3">
+
+<div class="dashboard-card">
+
+<h3>320</h3>
+<p>Pallets Armazenados</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="dashboard-card">
+
+<h3>78%</h3>
+<p>Ocupação do Armazém</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="dashboard-card">
+
+<h3>85</h3>
+<p>SKUs Ativos</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="dashboard-card">
+
+<h3>42</h3>
+<p>Expedições Hoje</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer class="text-center">
+
+<p>© 2026 VITALOGIS • Logística Inteligente</p>
+
+</footer>
+
+<script>
+
+function gerarQR(){
+
+let pagina = `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<style>
+
+body{
+font-family:Arial;
+background:#f4f6fa;
+padding:40px;
+}
+
+.container{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+max-width:800px;
+margin:auto;
+}
+
+h1{color:#0b3b5c}
+h2{color:#1b5a7a}
+
+.card{
+background:#f7f9fc;
+padding:15px;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>VITALOGIS</h1>
+
+<div class="card">
+
+<h2>Natureza</h2>
+
+<p>Armazenagem logística de bebidas e fármacos utilizando sistemas PUSH BACK e FLOW RACK.</p>
+
+</div>
+
+<div class="card">
+
+<h2>Missão</h2>
+
+<p>Oferecer soluções logísticas eficientes garantindo segurança e tecnologia.</p>
+
+</div>
+
+<div class="card">
+
+<h2>Visão</h2>
+
+<p>Ser referência em armazenagem inteligente na América Latina.</p>
+
+</div>
+
+<div class="card">
+
+<h2>Valores</h2>
+
+<p>Segurança, inovação, rastreabilidade e eficiência.</p>
+
+</div>
+
+<div class="card">
+
+<h2>PUSH BACK</h2>
+
+<p>Sistema LIFO ideal para bebidas com alto volume.</p>
+
+</div>
+
+<div class="card">
+
+<h2>FLOW RACK</h2>
+
+<p>Sistema FIFO ideal para medicamentos e controle de validade.</p>
+
+</div>
+
+</div>
+
+</body>
+</html>
+`;
+
+let encoded = "data:text/html;charset=utf-8," + encodeURIComponent(pagina);
+
+QRCode.toCanvas(document.getElementById("qr"), encoded);
+
+}
+
+gerarQR();
+
+const html5QrCode = new Html5Qrcode("reader");
+
+html5QrCode.start(
+{ facingMode: "environment" },
+{ fps:10, qrbox:250 },
+msg => { alert("QR detectado:\n"+msg); }
+);
+
+</script>
+
+</body>
+
+</html>
+```
