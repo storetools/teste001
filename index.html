@@ -1,286 +1,303 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VITALOGIS · Armazém inteligente</title>
-    <!-- Bootstrap 5 + ícones + QR code library -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <!-- Google Fonts (interativa e limpa) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <style>
-        * { font-family: 'Inter', sans-serif; }
-        body { background-color: #f4f7fc; }
-        .navbar-brand { font-weight: 700; letter-spacing: -0.5px; }
-        .bg-vitalogis { background: linear-gradient(135deg, #0b3b5c 0%, #1b5a7a 100%); }
-        .card-header { background-color: rgba(11,59,92,0.1); font-weight: 600; border-bottom: 2px solid #1b5a7a; }
-        .btn-vital { background-color: #0b3b5c; color: white; border-radius: 40px; padding: 12px 28px; font-weight: 500; border: none; transition: 0.2s; }
-        .btn-vital:hover { background-color: #1b5a7a; color: white; }
-        .qr-card { background: white; border-radius: 32px; box-shadow: 0 20px 40px -10px rgba(0,30,50,0.2); }
-        .stack-badge { background: #e9f0f5; color: #0b3b5c; font-weight: 500; padding: 8px 16px; border-radius: 40px; }
-        .feature-icon { font-size: 2rem; color: #1b5a7a; margin-right: 12px; }
-        footer { background: #0b1e2b; color: #aaccdd; }
-        .hover-scale:hover { transform: scale(1.02); transition: 0.25s; }
-        .list-group-item i { color: #1b5a7a; width: 28px; }
-        #qrCanvas { border-radius: 24px; padding: 16px; background: #ffffff; display: inline-block; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-    </style>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VITALOGIS | Logística Inteligente</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<style>
+
+body{
+background:#f4f6fa;
+font-family:Segoe UI;
+}
+
+.navbar{
+background:#0b3b5c;
+}
+
+.hero{
+padding:70px;
+color:white;
+background:linear-gradient(135deg,#0b3b5c,#1b5a7a);
+text-align:center;
+}
+
+.card{
+border:none;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.section{
+padding:60px 0;
+}
+
+.icon{
+font-size:40px;
+color:#0b3b5c;
+}
+
+.qr-box{
+background:white;
+padding:20px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+display:inline-block;
+}
+
+.dashboard-card{
+background:white;
+padding:25px;
+border-radius:15px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+footer{
+background:#0b3b5c;
+color:white;
+padding:30px;
+margin-top:40px;
+}
+
+</style>
+
 </head>
+
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-vitalogis sticky-top shadow-sm">
-    <div class="container">
-        <a class="navbar-brand fw-bold fs-3" href="#"><i class="bi bi-box-seam me-2"></i>VITALOGIS</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto align-items-center">
-                <li class="nav-item"><a class="nav-link" href="#sobre"><i class="bi bi-building"></i> Sobre</a></li>
-                <li class="nav-item"><a class="nav-link" href="#estruturas"><i class="bi bi-pallet"></i> Estruturas</a></li>
-                <li class="nav-item"><a class="nav-link" href="#adequacao"><i class="bi bi-clipboard-check"></i> Adequação</a></li>
-                <li class="nav-item"><a class="nav-link" href="#qrcode"><i class="bi bi-qr-code-scan"></i> QR CODE</a></li>
-            </ul>
-        </div>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-dark">
+<div class="container">
+<a class="navbar-brand fw-bold">
+<i class="bi bi-box-seam"></i> VITALOGIS
+</a>
+</div>
 </nav>
 
-<!-- HERO / MISSÃO VISÃO VALORES -->
-<section class="container my-5" id="sobre">
-    <div class="row align-items-center g-4">
-        <div class="col-lg-7">
-            <span class="stack-badge"><i class="bi bi-droplet me-1"></i> Bebidas · Fármacos comuns</span>
-            <h1 class="display-4 fw-bold mt-3" style="color: #0b3b5c;">VITALOGIS<br><span style="color:#1b5a7a;">logística vital</span></h1>
-            <p class="lead text-secondary">Armazenagem especializada em bebidas e fármacos comuns, utilizando sistemas de alta densidade: <strong>PUSH BACK</strong> e <strong>FLOW RACK</strong>. Soluções que garantem giro controlado, segurança e rastreabilidade.</p>
-            <div class="row mt-4 g-3">
-                <div class="col-md-4">
-                    <div class="bg-white p-3 rounded-4 shadow-sm h-100">
-                        <i class="bi bi-flag-fill fs-1" style="color: #0b3b5c;"></i>
-                        <h5 class="fw-bold mt-2">Missão</h5>
-                        <p class="mb-0 small">Oferecer soluções logísticas vitais com agilidade, segurança e tecnologia, preservando a integridade de bebidas e fármacos.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="bg-white p-3 rounded-4 shadow-sm h-100">
-                        <i class="bi bi-eye-fill fs-1" style="color: #0b3b5c;"></i>
-                        <h5 class="fw-bold mt-2">Visão</h5>
-                        <p class="mb-0 small">Ser referência na América Latina em armazenagem híbrida (alimentos/bebidas e farmacêutico) com sistemas dinâmicos até 2030.</p>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="bg-white p-3 rounded-4 shadow-sm h-100">
-                        <i class="bi bi-heart-fill fs-1" style="color: #0b3b5c;"></i>
-                        <h5 class="fw-bold mt-2">Valores</h5>
-                        <p class="mb-0 small">Qualidade, rastreabilidade, inovação, respeito à saúde e ao meio ambiente, parceria duradoura.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-5 text-center">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23d9eaf5'/%3E%3Ctext x='40' y='150' font-family='Inter' font-size='24' fill='%230b3b5c'%3E🧊 PUSH BACK %26 FLOW%3C/text%3E%3C/svg%3E" class="img-fluid rounded-4 shadow" alt="armazém">
-        </div>
-    </div>
+<section class="hero">
+<h1 class="display-4">VITALOGIS</h1>
+<p>Armazenagem inteligente de bebidas e fármacos</p>
 </section>
 
-<!-- ESTRUTURAS: PUSH BACK E FLOW RACK (detalhes completos) -->
-<section class="container my-5" id="estruturas">
-    <h2 class="fw-bold mb-4" style="border-left: 8px solid #1b5a7a; padding-left: 20px;">Sistemas de armazenagem</h2>
-    <div class="row g-4">
-        <!-- PUSH BACK card -->
-        <div class="col-md-6">
-            <div class="card h-100 shadow-sm border-0 hover-scale">
-                <div class="card-header bg-transparent d-flex align-items-center">
-                    <i class="bi bi-arrow-return-left feature-icon"></i>
-                    <span class="fs-3 fw-semibold">PUSH BACK</span>
-                </div>
-                <div class="card-body">
-                    <p><strong>Princípio:</strong> cargas empurram a anterior para o fundo (LIFO – último que entra, primeiro que sai). Ideal para produtos com pouca variação de SKU e alta densidade.</p>
-                    <ul class="list-group list-group-flush bg-transparent">
-                        <li class="list-group-item ps-0"><i class="bi bi-check-circle-fill me-2"></i>Estrutura com carrinhos sobre trilhos inclinados (geralmente 2 a 4 profundidades).</li>
-                        <li class="list-group-item ps-0"><i class="bi bi-check-circle-fill me-2"></i>O empilhador coloca o palete no primeiro carrinho; ao inserir o segundo, o primeiro recua.</li>
-                        <li class="list-group-item ps-0"><i class="bi bi-check-circle-fill me-2"></i>Otimização de corredores: reduz em até 60% a área comparado ao porta-paletes convencional.</li>
-                        <li class="list-group-item ps-0"><i class="bi bi-check-circle-fill me-2"></i><strong>Aplicação VITALOGIS:</strong> bebidas em garrafas (carga uniforme, alta rotatividade por lote).</li>
-                        <li class="list-group-item ps-0"><i class="bi bi-gear-fill me-2"></i>Controle de profundidade, guias laterais e sistema de freio suave (para fármacos quando em caixas secundárias).</li>
-                    </ul>
-                </div>
-                <div class="card-footer bg-white border-0 pb-3">
-                    <span class="badge bg-secondary">LIFO · 2 a 4 níveis</span>
-                    <span class="badge bg-light text-dark ms-2"><i class="bi bi-cup-straw"></i> bebidas</span>
-                </div>
-            </div>
-        </div>
-        <!-- FLOW RACK card -->
-        <div class="col-md-6">
-            <div class="card h-100 shadow-sm border-0 hover-scale">
-                <div class="card-header bg-transparent d-flex align-items-center">
-                    <i class="bi bi-arrow-down-short feature-icon"></i>
-                    <span class="fs-3 fw-semibold">FLOW RACK (dinâmico)</span>
-                </div>
-                <div class="card-body">
-                    <p><strong>Princípio:</strong> gravidade + roletes inclinados (FIFO – primeiro que entra, primeiro que sai). Perfeito para produtos perecíveis ou com data de validade crítica.</p>
-                    <ul class="list-group list-group-flush bg-transparent">
-                        <li class="list-group-item ps-0"><i class="bi bi-check-circle-fill me-2"></i>Paletes deslizam sobre roletes com controladores de velocidade (freios).</li>
-                        <li class="list-group-item ps-0"><i class="bi bi-check-circle-fill me-2"></i>Abastece-se por um lado (entrada) e retira-se pelo lado oposto (saída).</li>
-                        <li class="list-group-item ps-0"><i class="bi bi-check-circle-fill me-2"></i>Permite alta densidade e separação por lotes/validade.</li>
-                        <li class="list-group-item ps-0"><i class="bi bi-check-circle-fill me-2"></i><strong>Aplicação VITALOGIS:</strong> fármacos comuns (caixas, remédios com controle de validade) e bebidas que exigem FIFO (ex: cervejas artesanais).</li>
-                        <li class="list-group-item ps-0"><i class="bi bi-shield-check me-2"></i>Compatível com contenção secundária e fácil limpeza (para fármacos).</li>
-                    </ul>
-                </div>
-                <div class="card-footer bg-white border-0 pb-3">
-                    <span class="badge bg-success">FIFO · gravidade</span>
-                    <span class="badge bg-light text-dark ms-2"><i class="bi bi-capsule"></i> fármacos</span>
-                </div>
-            </div>
-        </div>
-    </div>
+<section class="section container">
+<h2>Natureza da Empresa</h2>
+<p>
+A VITALOGIS é especializada em armazenagem logística de bebidas e fármacos com sistemas modernos garantindo rastreabilidade e eficiência operacional.
+</p>
 </section>
 
-<!-- ADEQUAÇÃO: qual estrutura para cada produto -->
-<section class="container my-5" id="adequacao">
-    <div class="p-4 rounded-4 bg-white shadow-sm">
-        <h2 class="fw-bold mb-4"><i class="bi bi-diagram-3 me-2" style="color:#0b3b5c;"></i> Qual estrutura armazena cada produto?</h2>
-        <div class="row align-items-center">
-            <div class="col-lg-6">
-                <div class="d-flex mb-3 p-3 bg-light rounded-4">
-                    <i class="bi bi-cup-straw fs-1 me-3" style="color:#b94e2e;"></i>
-                    <div>
-                        <h4>Bebidas <span class="badge bg-warning text-dark">PUSH BACK (recomendado)</span></h4>
-                        <p>Bebidas em geral (latas, garrafas, engradados) possuem alta densidade e giro por lote. O sistema PUSH BACK permite armazenar múltiplos paletes do mesmo SKU em profundidade, reduzindo corredores. Ideal para estoques sazonais (ex: bebidas para eventos).</p>
-                        <p class="mb-0 fst-italic">Exceção: bebidas com validade curta (sucos frescos) podem usar FLOW RACK em FIFO.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="d-flex mb-3 p-3 bg-light rounded-4">
-                    <i class="bi bi-capsule-pill fs-1 me-3" style="color:#1b7a5a;"></i>
-                    <div>
-                        <h4>Fármacos comuns <span class="badge bg-success">FLOW RACK (recomendado)</span></h4>
-                        <p>Medicamentos e fármacos comuns exigem rigoroso controle de validade. O FLOW RACK FIFO garante que o lote mais antigo seja expedido primeiro. Os roletes suaves evitam impactos, e a estrutura permite limpeza profunda entre campanhas.</p>
-                        <p class="mb-0 fst-italic">PUSH BACK pode ser usado para fármacos de longa validade e mesma numeração de lote.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="text-center mt-4">
-            <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
-            <span class="text-secondary">A VITALOGIS adota ambos os sistemas, garantindo flexibilidade conforme a curva ABC e a criticidade dos prazos.</span>
-        </div>
-    </div>
+<section class="section container">
+<h2>Missão • Visão • Valores</h2>
+
+<div class="row">
+
+<div class="col-md-4">
+<div class="card p-4">
+<i class="bi bi-flag icon"></i>
+<h4>Missão</h4>
+<p>Soluções logísticas com segurança e tecnologia.</p>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card p-4">
+<i class="bi bi-eye icon"></i>
+<h4>Visão</h4>
+<p>Ser referência na América Latina.</p>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card p-4">
+<i class="bi bi-heart icon"></i>
+<h4>Valores</h4>
+<p>Segurança, inovação, rastreabilidade e eficiência.</p>
+</div>
+</div>
+
+</div>
 </section>
 
-<!-- QR CODE GERADOR com todas as info consolidadas -->
-<section class="container my-5" id="qrcode">
-    <div class="qr-card p-4 p-lg-5">
-        <div class="row">
-            <div class="col-lg-5 text-center text-lg-start">
-                <h2 class="fw-bold" style="color: #0b3b5c;"><i class="bi bi-qr-code me-2"></i>QR CODE DA VITALOGIS</h2>
-                <p class="text-secondary">Aponte a câmera do celular e tenha acesso instantâneo a todos os dados da empresa: natureza, missão/visão/valores, detalhes das estruturas e a adequação de bebidas e fármacos.</p>
-                <button class="btn btn-vital mt-3" id="generateQR"><i class="bi bi-arrow-repeat me-2"></i>Gerar / Atualizar QR Code</button>
-                <div class="mt-4 d-flex align-items-center">
-                    <i class="bi bi-info-circle-fill me-2 text-primary"></i>
-                    <span class="small">O QR abaixo contém todas as informações consolidadas em formato texto.</span>
-                </div>
-            </div>
-            <div class="col-lg-7 text-center">
-                <div id="qrCanvas" class="p-3">
-                    <canvas id="qrCodeCanvas" width="300" height="300" style="width:100%; max-width:300px; height:auto; border-radius:16px;"></canvas>
-                </div>
-                <p class="mt-3 fw-semibold"><i class="bi bi-file-text"></i> Dados inclusos no QR:</p>
-                <div class="row small text-start">
-                    <div class="col-6">✅ Natureza: Armazenagem bebidas/fármacos</div>
-                    <div class="col-6">✅ Missão, Visão, Valores</div>
-                    <div class="col-6">✅ Push Back (LIFO, bebidas)</div>
-                    <div class="col-6">✅ Flow Rack (FIFO, fármacos)</div>
-                </div>
-            </div>
-        </div>
-    </div>
+<section class="section container">
+<h2>Sistemas de Armazenagem</h2>
+
+<div class="row">
+
+<div class="col-md-6">
+<div class="card p-4">
+<h4>PUSH BACK</h4>
+<p>Sistema LIFO ideal para bebidas.</p>
+</div>
+</div>
+
+<div class="col-md-6">
+<div class="card p-4">
+<h4>FLOW RACK</h4>
+<p>Sistema FIFO ideal para fármacos.</p>
+</div>
+</div>
+
+</div>
 </section>
 
-<!-- FOOTER -->
-<footer class="py-4 mt-5">
-    <div class="container text-center">
-        <i class="bi bi-building fs-4"></i>
-        <p class="mb-0 mt-2">VITALOGIS – Logística vital para bebidas e fármacos comuns.  •  Sistemas Push Back e Flow Rack</p>
-        <p class="small mt-2">© 2026 – Tecnologia em armazenagem de precisão</p>
-    </div>
+<section class="section container text-center">
+<h2>QR Code</h2>
+
+<div class="qr-box">
+<canvas id="qr"></canvas>
+</div>
+
+<br><br>
+
+<button class="btn btn-primary" onclick="gerarQR()">Gerar QR Code</button>
+
+<!-- 🔥 PREVIEW -->
+<div id="preview" style="margin-top:40px;"></div>
+
+</section>
+
+<section class="section container text-center">
+<h2>Scanner</h2>
+<div id="reader" style="width:300px;margin:auto;"></div>
+</section>
+
+<section class="section container">
+<h2>Dashboard</h2>
+
+<div class="row">
+
+<div class="col-md-3">
+<div class="dashboard-card">
+<h3>320</h3>
+<p>Pallets</p>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="dashboard-card">
+<h3>78%</h3>
+<p>Ocupação</p>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="dashboard-card">
+<h3>85</h3>
+<p>SKUs</p>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="dashboard-card">
+<h3>42</h3>
+<p>Expedições</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<footer class="text-center">
+<p>© 2026 VITALOGIS</p>
 </footer>
 
-<!-- SCRIPTS: bootstrap, qrcode lib e lógica -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
 <script>
-    (function() {
-        // ---------- DADOS COMPLETOS DA EMPRESA (exatamente o que foi pedido) ----------
-        const empresa = {
-            natureza: "VITALOGIS · Armazenagem de bebidas (geral) e fármacos comuns. Opera com sistemas de alta densidade PUSH BACK e FLOW RACK.",
-            missao: "Missão: Oferecer soluções logísticas vitais com agilidade, segurança e tecnologia, preservando a integridade de bebidas e fármacos.",
-            visao: "Visão: Ser referência na América Latina em armazenagem híbrida (alimentos/bebidas e farmacêutico) com sistemas dinâmicos até 2030.",
-            valores: "Valores: Qualidade, rastreabilidade, inovação, respeito à saúde e ao meio ambiente, parceria duradoura.",
-            pushBack: "PUSH BACK: sistema LIFO com carrinhos sobre trilhos. 2 a 4 profundidades. Ideal para bebidas (mesmo SKU). Possui controle de profundidade e guias laterais.",
-            flowRack: "FLOW RACK: sistema FIFO por gravidade com roletes e controladores de velocidade. Perfeito para fármacos comuns (controle de validade) e bebidas que exigem FIFO.",
-            adequacao: "ADEQUAÇÃO: BEBIDAS → melhor PUSH BACK (LIFO) para lotes homogêneos. FÁRMACOS COMUNS → melhor FLOW RACK (FIFO) para controle de validade. AMBOS os sistemas convivem na VITALOGIS conforme necessidade."
-        };
 
-        // Função para gerar o texto completo (itens 1 a 4)
-        function obterTextoCompleto() {
-            return `1 - NATUREZA DA EMPRESA VITALOGIS
-${empresa.natureza}
+function gerarQR(){
 
-2 - MISSÃO, VISÃO, VALORES
-${empresa.missao}
-${empresa.visao}
-${empresa.valores}
+let pagina = `
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-3 - ESTRUTURA DE ARMAZENAGEM (DETALHES)
-• PUSH BACK: ${empresa.pushBack}
-• FLOW RACK: ${empresa.flowRack}
+<style>
 
-4 - QUAL ESTRUTURA PARA CADA PRODUTO?
-${empresa.adequacao}
+body{
+font-family:Arial;
+background:#f4f6fa;
+margin:0;
+padding:15px;
+}
 
-© VITALOGIS - consulte sempre a versão mais atual.`;
-        }
+.container{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
 
-        // Renderiza QR Code no canvas
-        const canvas = document.getElementById('qrCodeCanvas');
-        function gerarQRCode(texto) {
-            QRCode.toCanvas(canvas, texto, { 
-                width: 300,
-                margin: 2,
-                color: { dark: '#0b3b5c', light: '#ffffff' }
-            }, function (error) {
-                if (error) console.error(error);
-                else console.log('QR Code gerado com sucesso!');
-            });
-        }
+h1{
+color:#0b3b5c;
+text-align:center;
+}
 
-        // Gerar na primeira carga
-        gerarQRCode(obterTextoCompleto());
+.card{
+background:#f7f9fc;
+padding:12px;
+border-radius:10px;
+margin-bottom:15px;
+font-size:14px;
+}
 
-        // Botão regenerar
-        document.getElementById('generateQR').addEventListener('click', function() {
-            gerarQRCode(obterTextoCompleto());
-        });
+</style>
 
-        // Extra: opção de tocar/ interatividade nos cards (já tem hover via CSS)
-        // Adicionar classe pra feedback
-    })();
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>VITALOGIS</h1>
+
+<div class="card"><b>Natureza:</b> Armazenagem de bebidas e fármacos</div>
+<div class="card"><b>Missão:</b> Eficiência logística com tecnologia</div>
+<div class="card"><b>Visão:</b> Referência na América Latina</div>
+<div class="card"><b>Valores:</b> Segurança, inovação e rastreabilidade</div>
+<div class="card"><b>PUSH BACK:</b> Sistema LIFO ideal para bebidas</div>
+<div class="card"><b>FLOW RACK:</b> Sistema FIFO ideal para fármacos</div>
+
+</div>
+
+</body>
+</html>
+`;
+
+let encoded = "data:text/html;charset=utf-8," + encodeURIComponent(pagina);
+
+// QR
+QRCode.toCanvas(document.getElementById("qr"), encoded);
+
+// PREVIEW NA TELA
+document.getElementById("preview").innerHTML = `
+<h4>📱 Visualização Mobile</h4>
+<iframe style="width:100%;height:500px;border:none;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.2);" src="${encoded}"></iframe>
+`;
+
+}
+
+gerarQR();
+
+// SCANNER
+const html5QrCode = new Html5Qrcode("reader");
+
+html5QrCode.start(
+{ facingMode: "environment" },
+{ fps:10, qrbox:250 },
+msg => { window.location.href = msg; }
+);
+
 </script>
 
-<!-- ÍCONES INTERATIVOS (botão de cópia mental, mas já temos interação) -->
-<script>
-    // toque suave: ao clicar no título das estruturas, exibe um alerta educativo (só para demonstrar interação)
-    document.querySelectorAll('.card-header .fs-3').forEach((el, index) => {
-        el.addEventListener('click', function() {
-            const sistema = index === 0 ? 'PUSH BACK' : 'FLOW RACK';
-            alert(`🔧 ${sistema}: consulte os detalhes técnicos no card. Você pode escanear o QR Code para resumo completo.`);
-        });
-    });
-    // botão flutuante de informação (opcional) não necessário mas ok
-</script>
-
-<!-- Acessibilidade e responsividade garantidas pelo bootstrap -->
 </body>
 </html>
